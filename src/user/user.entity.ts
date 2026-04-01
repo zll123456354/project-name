@@ -5,9 +5,15 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
+  username: string;
+
+  @Column({ select: false }) // 查询时默认不携带密码，保障安全
+  password: string;
+
+  @Column({ nullable: true })
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   age: number;
 }
